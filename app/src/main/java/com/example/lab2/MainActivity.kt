@@ -151,8 +151,19 @@ fun HouseRow(item: House) {
             .border(BorderStroke(2.dp, Color(0xFF4CAF50)))
             .padding(12.dp)
     ) {
-        Text(item.street, fontSize = 20.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(3f))
-        Text("д. ${item.number}", fontSize = 18.sp, modifier = Modifier.weight(1.5f))
-        Text("${item.apartments} кв.", fontSize = 18.sp, fontStyle = FontStyle.Italic, modifier = Modifier.weight(1.5f))
+        Text(item.street,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.SemiBold,
+            modifier = Modifier.weight(3f)
+        )
+        Text("д. ${item.number}",
+            fontSize = 18.sp,
+            modifier = Modifier.weight(1.5f)
+        )
+        Text("${item.apartments} кв.",
+            fontSize = 18.sp,
+            fontStyle = FontStyle.Italic,
+            modifier = Modifier.weight(1.5f)
+        )
     }
 }
