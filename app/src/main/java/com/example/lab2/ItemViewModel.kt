@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-// data class — класс данных для хранения информации о доме
+// data class - класс данных для хранения информации о доме
 data class House(val street: String, val number: Int, val apartments: Int)
 
-// ViewModel — хранит данные отдельно от интерфейса, не теряет их при перерисовке
+// ViewModel - хранит данные отдельно от интерфейса, не теряет их при перерисовке
 class ItemViewModel : ViewModel() {
 
-    // mutableStateListOf — реактивный список, UI обновляется при изменении
+    // mutableStateListOf - реактивный список, UI обновляется при изменении
     private var houseList = mutableStateListOf(
         House("ул. Ленина", 15, 80),
         House("ул. Мира", 22, 60),
@@ -23,7 +23,7 @@ class ItemViewModel : ViewModel() {
         House("пр. Победы", 6, 100)
     )
 
-    // StateFlow — поток данных, интерфейс отслеживает изменения через него
+    // StateFlow - поток данных, интерфейс отслеживает изменения через него
     private val _houseListFlow = MutableStateFlow(houseList)
     val houseListFlow: StateFlow<List<House>> get() = _houseListFlow
 

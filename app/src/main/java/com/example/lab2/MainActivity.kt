@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     private val viewModel = ItemViewModel() // ViewModel хранит данные отдельно от интерфейса
 
-    // onCreate — вызывается при запуске приложения
+    // onCreate - вызывается при запуске приложения
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent { // задаём содержимое экрана
@@ -48,12 +48,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Главный экран — заголовок, поля ввода и список
+// Главный экран - заголовок, поля ввода и список
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HousesScreen(viewModel: ItemViewModel) {
     val lazyListState = rememberLazyListState() // сохраняет позицию прокрутки
-    // Column — вертикальный контейнер
+    // Column - вертикальный контейнер
     Column(Modifier.fillMaxSize()) {
         Text(
             "Дома г. Нижневартовск",
@@ -83,7 +83,7 @@ fun HouseInputPart(model: ItemViewModel, lazyListState: LazyListState) {
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier.padding(4.dp)
     ) {
-        // TextField — поле ввода, weight распределяет ширину пропорционально
+        // TextField - поле ввода, weight распределяет ширину пропорционально
         TextField(
             value = street,
             onValueChange = { street = it }, // при вводе обновляем переменную
@@ -127,7 +127,7 @@ fun HouseInputPart(model: ItemViewModel, lazyListState: LazyListState) {
 // Прокручиваемый список домов
 @Composable
 fun HouseList(viewModel: ItemViewModel, lazyListState: LazyListState) {
-    // LazyColumn — создаёт элементы только при появлении на экране
+    // LazyColumn - создаёт элементы только при появлении на экране
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxSize().background(Color.White).padding(4.dp),
@@ -148,10 +148,9 @@ fun HouseRow(item: House) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
-            .border(BorderStroke(2.dp, Color(0xFF4CAF50))) // зелёная рамка
+            .border(BorderStroke(2.dp, Color(0xFF4CAF50)))
             .padding(12.dp)
     ) {
-        // weight — пропорциональное распределение ширины
         Text(item.street, fontSize = 20.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(3f))
         Text("д. ${item.number}", fontSize = 18.sp, modifier = Modifier.weight(1.5f))
         Text("${item.apartments} кв.", fontSize = 18.sp, fontStyle = FontStyle.Italic, modifier = Modifier.weight(1.5f))
