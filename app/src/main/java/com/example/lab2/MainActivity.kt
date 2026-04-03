@@ -71,13 +71,13 @@ fun HousesScreen(viewModel: ItemViewModel) {
 @Composable
 fun HouseInputPart(model: ItemViewModel, lazyListState: LazyListState) {
     // Реактивные переменные — UI обновляется при изменении
-    var street by remember { mutableStateOf("") }
-    var number by remember { mutableIntStateOf(0) }
+    var street by remember { mutableStateOf("") } //mutableStateOf - для строки
+    var number by remember { mutableIntStateOf(0) }//mutableIntStateOf - для чисел
     var apartments by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope() // для асинхронной прокрутки списка
     val context = LocalContext.current
 
-    // Row — горизонтальный контейнер
+    // Row - горизонтальный контейнер(располагает элементы горизонтально)
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -110,13 +110,14 @@ fun HouseInputPart(model: ItemViewModel, lazyListState: LazyListState) {
         // Кнопка добавления
         Button(
             onClick = {
-                if (street.isNotEmpty()) {
-                    // Создаём объект House и добавляем в начало списка
+                if (street.isNotEmpty()) { // проверяем что улица не пустая
+                    // создаём дом и добавляем в список
                     model.addHouseToHead(House(street, number, apartments))
                     scope.launch { lazyListState.scrollToItem(0) } // прокрутка к новому элементу
                     street = ""; number = 0; apartments = 0 // очищаем поля
                 } else {
                     Toast.makeText(context, "Введите улицу!", Toast.LENGTH_SHORT).show()
+                    // предупреждение если пусто
                 }
             },
             modifier = Modifier.weight(1f)
@@ -127,13 +128,13 @@ fun HouseInputPart(model: ItemViewModel, lazyListState: LazyListState) {
 // Прокручиваемый список домов
 @Composable
 fun HouseList(viewModel: ItemViewModel, lazyListState: LazyListState) {
-    // LazyColumn - создаёт элементы только при появлении на экране
+    // LazyColumn - список, создаёт элементы только при появлении на экране
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxSize().background(Color.White).padding(4.dp),
         state = lazyListState
     ) {
-        // items берёт данные из ViewModel и создаёт строки списка
+        // items берёт список домов из ViewModel и для каждого вызывает строки списка HouseRow
         items(
             items = viewModel.houseListFlow.value,
             key = { house -> "${house.street}_${house.number}" }, // составной уникальный ключ
