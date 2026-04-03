@@ -70,7 +70,7 @@ fun HousesScreen(viewModel: ItemViewModel) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HouseInputPart(model: ItemViewModel, lazyListState: LazyListState) {
-    // Реактивные переменные — UI обновляется при изменении
+    // Реактивные переменные - хранят данные из полей ввода
     var street by remember { mutableStateOf("") } //mutableStateOf - для строки
     var number by remember { mutableIntStateOf(0) }//mutableIntStateOf - для чисел
     var apartments by remember { mutableIntStateOf(0) }
