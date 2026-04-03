@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.lab2.ui.theme.Lab2Theme  // поменяй на своё имя темы
+import com.example.lab2.ui.theme.Lab2Theme
 import kotlinx.coroutines.launch
 
 // Основной класс приложения
